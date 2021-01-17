@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81805433-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-81805433-1');
+</script>
+	<meta name="google-site-verification" content="uDPvJZnfEuiVfjPjptxe1Lm6-R8deTGQj9Sa16h1hQ4" />
+	<meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name=“description“ content="{%block description%}{%endblock%}" />
+	{%block metatags%}{%endblock%}
+	<title>{%block title%}{%endblock%}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+	<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>	
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+	<link href="{% static 'media/popcorn.png' %}" rel="icon" type="image/png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+</head>
+<body>
+		<div id="mySidenav" class="sidenav">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			{% for item in menu_items %}
+			<a href="{% url 'serial' name=item.title_cz %}">{{item.title_cz}}</a>
+			{% endfor %}
+		</div>
+	<nav class="navbar navbar-expand-sm top-fixed" style="background-color:#1a1a1a">
+		<span onclick="openNav()"><img src="{% static 'media/popcorn.png' %}" style="height: 40px;transform:rotate(10deg);"></img></span>
+  <div class="navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'serials' %}" style="color:white">Serialy</a>
+      </li>
+    </ul>  
+	<form class="mk-search-form" method="GET">
+		<input class="search form-control mr-sm-2" id="search" type="search" placeholder="Hledej serial" onkeyup="f(this.value)" autocomplete="off">  
+		   
+	<div id="demo">
+	</div>
+	</form>	
+  </div>
+</nav>
+<div class="container row-fluid" style="text-align:center;">
+	<a href="{% url 'post_list' %}">
+      <img class="logo" src="{% static 'media/logo.png' %}" style="margin-bottom:15px;"></img>       
+	</a>
+</div>
+
+
+
+<script type="application/javascript">
+$(document).on("click", function(e) {
+	if(e.pageX > 250){
+		document.getElementById("mySidenav").style.width = "0";
+	}
+});
+/* Set the width of the side navigation to 250px */
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+function f(value){
+
+$.ajax({
+    type: "GET",
+    url: '/api/get_array/'+value,
+    dataType: 'json',
+    success: function(serials){
+		if(serials.serial !== "") {
+			var content = "<ul>";
+			$.each(serials,function(index, value){
+				content = content.concat("<a href=\"/serial/" + value.name + "/\"><li>");	
+				content = content.concat(value.title);	
+				content = content.concat("</li></a>");		
+				});
+			content = content.concat("</ul>");
+			document.getElementById("demo").innerHTML = content;
+		} else {
+			document.getElementById("demo").innerHTML = "";
+		}
+    },
+    error: function(jqXHR, textStatus, errorThrown){
+         document.getElementById("demo").innerHTML = '';
+    }
+});
+}
+
+
+</script>
+
+
+             {% block content %}
+             {% endblock %}
+
+<div class="container" style="padding:25px;background-color:#0d0d0d">
+	<div class="row">
+		<div class="col-sm-6">
+			2019 OnlineCZserialy.cz, kontakt: info@onlineczserialy.cz
+		</div>
+		<div class="col-sm-6">
+			<style>
+			.col-sm-6 a {color:#0d0d0d}
+			</style>
+			<a href="{% url 'dmca' %}"> Podminky / DMCA </a>
+		</div>
+	</div>
+</div>
+
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+	function disableEnterKey(evt) {
+
+	var evt = (evt) ? evt : ((event) ? event : null);
+
+	var elem = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+
+	if ((evt.keyCode == 13) && (elem.type=='search'))  {return false;}
+
+	}
+
+	 
+
+	document.onkeypress = disableEnterKey;
+
+	</script>
+

@@ -1,0 +1,371 @@
+body{
+	/*background: URL('http://static.hdw.eweb4.com/media/wallpapers_dl/1/40/390286-web-black-background.jpg');*/
+	background-color: black;                     
+	background-repeat:   repeat-y;
+	background-position: top center; 
+}
+
+a, a:hover{
+	text-decoration: none; 
+	color: #777;
+}
+
+h1 {
+  /* Extra small devices (phones, less than 768px) */
+  font-size: 20px;
+
+  /* Small devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    font-size: 26px;
+  }
+
+  /* Medium devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    font-size: 32px;
+  }
+
+  /* Large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    font-size: 38px;
+  }
+}
+
+.title_cz h2 {
+  /* Extra small devices (phones, less than 768px) */
+  font-size: 17px;
+
+  /* Small devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    font-size: 23px;
+  }
+
+  /* Medium devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    font-size: 29px;
+  }
+
+  /* Large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    font-size: 35px;
+  }
+}
+
+.container{
+	background-color: #1a1a1a;
+}
+
+.row select{
+	width: 150px;
+	background-color: black;
+}
+
+.navbar-brand:hover{
+	transition: opacity .5s;
+	opacity: .7;
+}
+
+.nav-link:hover{
+	transition: opacity .5s;
+	opacity: .7;
+}
+
+.logo{
+	opacity: .9;
+}
+
+.logo:hover{
+	transition: opacity .3s;
+	opacity: 1;
+}
+
+
+.gray-background{
+	background-color: #1a1a1a;
+	color: white;
+}
+
+
+
+.my-items{
+	background-color: #1a1a1a;
+	overflow: hidden;
+	
+}
+
+.my-items img{
+	width: 100%;
+}
+
+.my-items a:hover, a:visited{
+	text-decoration: none;
+}
+
+.my-items h2{
+	margin-top: 15px;
+	margin-left: 15px;
+}
+.series{
+	color: #777;
+	font-size: 1.5em;
+	margin: 5px;
+}
+
+.dab_cz{
+	display: inline;
+	color: white;
+	font-size: 0.7em;
+}
+
+.badge{
+	background-color: #0d0d0d;
+	margin-bottom: 15px;
+	transition: background-color 1s;
+}
+
+.badge:hover{
+	background-color: #1a1a1a;
+}
+
+.he60{
+	height:60px;
+}
+
+.my-title{
+	background-color: #0d0d0d;
+	margin-bottom: 20px;
+	padding: 20px;
+	margin-top: 0px;
+
+}
+
+.my-title h2, a{
+	color: white;
+	margin-top: 10px;
+	text-decoration: none;
+}
+
+.my-title a:hover{
+	transition: color .5s;
+	color: #777;
+}
+
+.my-title img{
+	width: 180px;
+	height: 100px;
+	border-radius: 20px;
+}
+
+.my-title img:hover{
+	transition: opacity .5s;
+	opacity: 0.7;
+}
+
+.background-orange-base {
+
+}
+
+.background-orange-base img{
+	background-color: black;
+	transition: opacity .5s;
+	opacity: 1;
+
+}
+
+.background-orange-base img:hover{
+	opacity: 0.8;
+}
+
+
+
+
+.rounded_detail{
+	border-radius: 15px;;
+	width: 150px;
+}
+
+.next_prev{
+	background-color: #0d0d0d;
+	height: 30px;
+}
+
+.my-serials{
+	overflow: hidden;
+	margin: 0 -15px 0 -15px;
+	padding: 10px 15px 5px 0;
+	color: white;
+	text-align: left;
+}
+
+.my-serials:hover{
+	transition: background-color .5;
+	background-color: #0d0d0d;
+}
+
+.my-serials img{
+	float: left;
+	width: 300px;
+	height: 170px;
+	margin: 15px 25px 15px 0;
+}
+
+.my-serials img:hover{
+	transition: opacity .4s;
+	opacity: .65;	
+}
+
+.episode-row{
+	margin: 5px 0 5px 0;	
+	padding: 5px 0 5px 5px;
+}
+
+.episode-row:hover{
+	transition: background-color .5s;
+	background-color: #0d0d0d;
+	width: 100%;
+}
+
+.my-serials-text{
+	margin-top: 15px;
+}
+.my-serials-text h3{
+	font-size: 80%;
+}
+.text-white{
+	color: white;
+	text-align: center;
+	overflow:hidden;
+}
+
+.text-white h1{
+	margin: 15px 0 15px 0;
+}
+
+
+
+.row-serie-item:hover{
+	transition: background-color .5s;
+	background-color: #0d0d0d;
+}
+
+.mk-search-form{
+	position:relative;
+	width: 300px;
+}
+
+.search{
+	background-color: #0d0d0d;
+	border-color: #0d0d0d;
+}
+
+.search:focus {
+	background-color: #0d0d0d;
+	border-color: #0d0d0d;
+}
+
+#demo{	
+	margin-top:6px;
+	position: absolute;
+	background-color: white;
+	z-index:9999;
+	width: 300px;
+}
+
+#demo a{	
+	text-decoration: none;
+	color: white;
+}
+
+#demo ul{
+	background-color:#0d0d0d;
+	margin-bottom: 0px;
+	padding-left: 0px;
+}
+
+#demo li{
+	margin-left: 0px;
+	list-style-type: none;
+	height: 45px;
+	padding-top: 10px;
+	padding-left: 15px;
+}
+
+#demo li:hover{	
+	transition: background-color .5s;
+	background-color: #111;
+}
+
+// dropdown menu
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: #0d0d0d;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  overflow: hidden;
+}
+
+.dropdown-container a{
+	color: #777;
+}
+
+.dropdown-container a:hover{
+	color: white;
+}
+
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+.fa-caret-down::before{
+  content: url('../media/sipka.png');
+  width:10px;
+}
+

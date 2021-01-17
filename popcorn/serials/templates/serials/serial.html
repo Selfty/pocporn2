@@ -1,0 +1,74 @@
+{% extends 'serials/base.html' %}
+{% load static %}
+
+{% block title %}
+
+Serial {{serial.title}} online
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container background-orange-base" style="background-color:transparent;">
+<a href="{% url 'serial' name=serial.title_cz %}">
+<img class="img-responsive" src="../../static/media/{{serial.image}}" width="1110" style="width:100%;max-height:360px;height:auto;margin: 25px 0 25px 0;">
+</a>
+</div>
+<div class="container text-white">
+<div style="background-color: #0d0d0d;padding-top: 5px;padding-bottom: 5px;margin-bottom:15px;">
+<div class="row-fluid">
+<h1>{{serial.title_cz}}</h1>
+</div>
+<div class="row-fluid title_cz">
+<h2>{{serial.title_en}}</h2>
+</div>
+<div class="row-fluid">
+<p>{{serial.delka}} MIN | {{serial.start_yr}} - {{serial.end_yr}}<p>
+</div>
+</div>
+<div class="row-fluid">
+<p>{{serial.popis}}<p>
+</div>
+{% for serie in series %}
+<div class="row-fluid row-serie-item">
+
+<button class="dropdown-btn">
+<div class="col-sm-12">
+<h3>{{serie.first.cislo_serie}}. serie <i class="fa-caret-down"></i>
+</h3>
+
+
+</div>
+</button>
+
+<div class="dropdown-container">
+{% for episode in serie %}
+<a href="{% url 'post_detail' name=episode.epizoda_serial.title_cz sn=episode.cislo_serie en=episode.cislo_epizoda %}">
+<div class="row col-sm-12 episode-row">
+{{episode.title_cz}} {{episode.cislo_epizoda}}. díl <div class="dab_cz">{% if episode.url1_cc == 1 %}  Cc {%endif%}{% if episode.url2_cc == 1 %} Dab {%endif%}</div>
+</div></a>
+{% endfor %}
+</div>
+</div>
+{% endfor %}
+
+</div>
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>
+
+{% endblock %}

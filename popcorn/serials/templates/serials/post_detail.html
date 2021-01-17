@@ -1,0 +1,87 @@
+{% extends 'serials/base.html' %}
+{% load static %}
+
+{%block metatags%}
+
+<meta property="og:image" content="../../../static/media/{{serial.image}}">
+<meta property="og:title" content="{{serial.title_cz}} S{{post.cislo_serie}}E{{post.cislo_epizoda}}">
+<meta property="og:description" content="{{serial.popis|truncatechars:100}}">
+<script>(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://iclickcdn.com/tag.min.js',2910942,document.body||document.documentElement)</script>
+{%endblock%}
+
+{% block title %}
+
+{{post.epizoda_serial.title_en}} | {{post.epizoda_serial.title_cz}} - S{{post.cislo_serie}}E{{post.cislo_epizoda}}
+
+{% endblock %}
+
+{%block description%}
+
+Sleduj {{post.title}} s{{post.serie}}e{{post.episode}} zdarma online.
+
+{%endblock%}
+
+{% block content %}
+
+<div class="container background-orange-base" style="background-color:transparent;">
+
+<a href="{% url 'serial' name=serial.title_cz %}">
+<img class="img-responsive" src="/static/media/{{serial.image}}" width="1110" style="width:100%;max-height:360px;height:auto;margin: 25px 0 25px 0;">
+</a>
+</div>
+<div class="container" style="padding-bottom:25px;">
+
+<div class="my-title">
+	<div class="row">
+		<div class="col-sm-5">
+			<a href="{% url 'serial' name=post.epizoda_serial.title_cz %}">
+			<img class="img-responsive" src="../../../static/media/{{serial.image}}"> 
+			</a>
+		</div>
+		<div class="col-sm-7" >
+				<div class="col-12 post_detail_title" style="padding-left:0px;">
+					<a><h2><a href="{% url 'serial' name=post.epizoda_serial.title_cz %}">{{post.epizoda_serial.title_cz}} </a>- s{{post.cislo_serie}}e{{post.cislo_epizoda}}</h2>
+				</div>
+			<div class="row">
+				<div class="col-12 post_detail_title">
+					<h3>{{post.popis_epizody}}</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row-fluid embed-responsive embed-responsive-16by9">
+	<iframe class="embed-responsive-item" src="{{post.url1}}" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" width="850" height="370" frameborder="0">
+	</iframe>				
+</div>
+<div class="row">
+	<div class="col-6 text-center">
+		{% if prev %}
+		<a href="{% url 'post_detail' name=prev.epizoda_serial.title_cz sn=prev.cislo_serie en=prev.cislo_epizoda %}">
+		{% endif %}			
+			<div class="next_prev">
+				predchozi epizoda
+			</div>
+		{% if prev %}
+		</a>
+		{% endif %}
+	</div>
+	<div class="col-6 text-center">
+		{% if next %}
+		<a href="{% url 'post_detail' name=next.epizoda_serial.title_cz sn=next.cislo_serie en=next.cislo_epizoda %}">
+		{% endif %}		
+			<div class="next_prev">
+				dalsi epizoda
+			</div>
+		{% if next %}
+		</a>
+		{% endif %}
+	</div>
+</div>
+	<div class="row text-center">
+		<div class="col-xl-12">
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'serials/base.html' %}
+{% load static %}
+
+{% block title %}
+
+Online seriály zdarma
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container background-orange-base" style="background-color:transparent;">
+
+	<a href="{% url 'serial' name=toppost.serial.title_cz %}">
+		<img class="img-responsive" src="/static/media/{{toppost.image}}" style="width:100%;max-height:360px;height:auto;margin: 25px 0 25px 0;">
+	</a>
+</div>
+<div class="container">
+
+
+	{% for serial in serials %}
+	<a href="{%  url 'serial' name=serial.title_cz %}" style="margin:0;">
+	<div class="row-fluid my-serials">
+		
+		<div class="col-5-sm">
+		<img class="img-responsive" src="/static/media/{{serial.image}}">
+		</div>
+		<div class="col-7-sm my-serials-text">
+			
+			<h2>{{serial.title_cz}}</h2> 
+			<h3>{{serial.title_en}}</h3>
+{{serial.url1}}% | {{serial.delka}} MIN | {{serial.start_yr}} - {{serial.end_yr}}
+			<p>
+			{{serial.sub_title|truncatechars:147}}
+			</p>
+			
+		</div>
+		
+	</div>
+	</a>
+	{% endfor %}
+</div>
+
+{% endblock %}
