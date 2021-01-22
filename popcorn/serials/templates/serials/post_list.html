@@ -16,34 +16,75 @@ Baví tě sledovat seriály? U nás si příjdeš na své. Vše je online a zdar
 {% block content %}
 <div class="container background-orange-base" style="background-color:transparent;">
 
-<a href="{% url 'serial' name=toppost.serial.title_cz %}">
-<img class="img-responsive" src="../../static/media/{{toppost.image}}" width="1110" style="width:100%;max-height:360px;height:auto;margin: 25px 0 25px 0;">
-</a>
+<div id="carouselExampleCaptions" class="carousel slide top-slider" data-bs-ride="carousel">
+  <ol class="carousel-indicators">
+  {% for serial in toppost %}
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{forloop.counter0}}" class="{% if forloop.first %}active{% endif %}"></li>
+  {% endfor %}
+  </ol>
+  <div class="carousel-inner">
+    {% for serial in toppost %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+	<a href="{% url 'serial' name=serial.serial.title_cz %}">
+      <img src="../../static/media/{{serial.serial.image}}" class="d-block w-100" alt="{{serial.serial.title_cz}}">
+	  <div class="carousel-caption d-none d-md-block" style="background-color:rgba(0,0,0,0.5)">
+        <h5>{{serial.serial.title_cz}}</h5>
+        <p>{{serial.serial.popis | truncatechars:100 }}</p>
+      </div>
+	  </a>
+    </div>
+	{% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Předchozí</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Další</span>
+  </a>
+</div>
+
+
+
 
 </div>
 <div class="container">
 <div class="my-items">
 <h2 style="color: white;">Nově přidáno</h2>
-<div class="row">
+<div class="row justify-content-center">
 {% for post in posts %}
-<div class="col-md-4"> 
-<a href="{% url 'post_detail' name=post.epizoda_serial.title_cz sn=post.cislo_serie en=post.cislo_epizoda %}" class="badge">
-	<h1 style="color:#777">{{ post.epizoda_serial.title_cz }}</h1>    
-	<img src="../../static/media/{{post.epizoda_serial.image}}"></img>
-         <div class="series">
-             {{ post.cislo_serie }}x{{post.cislo_epizoda}}
-		<div class="dab_cz">		
-		{% if post.url1_cc == 1 %} Cc {% endif %}{% if post.url2_cc == 1 %} Dab {% endif %}
-		</div>         
-	</div>
-</a>
+<div class="col-md-4 p-1 gx-1">
+	<a href="{% url 'post_detail' name=post.epizoda_serial.title_cz sn=post.cislo_serie en=post.cislo_epizoda %}" class="badge m-2 p-2"> 
+		<div class="row justify-content-center">
+			<div class="col-sm-12"> 
+				<img class="col-sm-10 align-self-center"src="../../static/media/{{post.epizoda_serial.image}}"></img>
+			</div>	
+		</div>
+		<div class="row align-center">		
+			<div class="col-sm-4 align-self-end p-1"> 
+				<h2 style="font-size:1.4em;margin-bottom:0px;margin-top:5px;" class="text-start">{{ post.epizoda_serial.title_cz }}</h2>
+			</div>
+			<div class="col-sm-4 p-1 align-self-end offset-sm-3 text-end"> 
+					S{{ post.cislo_serie }}E{{post.cislo_epizoda}}
+			</div>
+		</div>
+		<div class="row">
+						<div class="ml-3  col-sm-4 align-self-end p-1"> 
+						{{post.created_date|date:"D, j.m.Y"}}
+			</div>
+			<div class=" col-sm-4 p-1 align-self-end offset-sm-3 text-end"> 
+			{% if post.url1_cc == 1 %} Cc {% elif post.url1_cc == 0 %} Dab {% endif %}
+			</div>
+		</div>
+	</a>
 </div>
-
 {% endfor %}
 </div>
 </div>
 </div>
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 {% endblock %}

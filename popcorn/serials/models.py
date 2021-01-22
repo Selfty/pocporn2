@@ -27,9 +27,9 @@ class Serial(models.Model):
 
 	def __str__(self):
 		return self.title_cz
-   
- #   def get_absolute_url(self):
- #       return '/serial/{0}/'.format(self.name)
+
+	def get_absolute_url(self):
+		return '/serial/{0}/'.format(self.title_cz)
 
 class Epizoda(models.Model):
 	epizoda_serial = models.ForeignKey(Serial, on_delete=models.CASCADE)
@@ -50,8 +50,8 @@ class Epizoda(models.Model):
 	def __str__(self):
 		return self.epizoda_serial.title_cz + " S" + str(self.cislo_serie) + " E" + str(self.cislo_epizoda) 
 		
- #   def get_absolute_url(self):
-  #      return '/{0}/{1}/{2}/'.format(self.name, self.serie, self.episode)
+	def get_absolute_url(self):
+		return '/{0}/{1}/{2}/'.format(self.epizoda_serial.title_cz, self.cislo_serie, self.cislo_epizoda)
 
 
 class Topserials(models.Model):

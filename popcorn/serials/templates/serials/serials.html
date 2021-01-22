@@ -11,9 +11,34 @@ Online seriály zdarma
 
 <div class="container background-orange-base" style="background-color:transparent;">
 
-	<a href="{% url 'serial' name=toppost.serial.title_cz %}">
-		<img class="img-responsive" src="/static/media/{{toppost.image}}" style="width:100%;max-height:360px;height:auto;margin: 25px 0 25px 0;">
-	</a>
+<div id="carouselExampleCaptions" class="carousel slide top-slider" data-bs-ride="carousel">
+  <ol class="carousel-indicators">
+  {% for serial in toppost %}
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{forloop.counter0}}" class="{% if forloop.first %}active{% endif %}"></li>
+  {% endfor %}
+  </ol>
+  <div class="carousel-inner">
+    {% for serial in toppost %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+	<a href="{% url 'serial' name=serial.serial.title_cz %}">
+      <img src="../../static/media/{{serial.serial.image}}" class="d-block w-100" alt="{{serial.serial.title_cz}}">
+	  <div class="carousel-caption d-none d-md-block" style="background-color:rgba(0,0,0,0.5)">
+        <h5>{{serial.serial.title_cz}}</h5>
+        <p>{{serial.serial.popis | truncatechars:100 }}</p>
+      </div>
+	  </a>
+    </div>
+	{% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Předchozí</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Další</span>
+  </a>
+</div>
 </div>
 <div class="container">
 
@@ -29,9 +54,9 @@ Online seriály zdarma
 			
 			<h2>{{serial.title_cz}}</h2> 
 			<h3>{{serial.title_en}}</h3>
-{{serial.url1}}% | {{serial.delka}} MIN | {{serial.start_yr}} - {{serial.end_yr}}
+{{serial.delka}} MIN | {{serial.start_yr}} - {{serial.end_yr}}
 			<p>
-			{{serial.sub_title|truncatechars:147}}
+			{{serial.popis|truncatechars:147}}
 			</p>
 			
 		</div>

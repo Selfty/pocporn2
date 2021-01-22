@@ -11,7 +11,7 @@ from django.contrib.sitemaps import Sitemap
 def post_list(request):
     serials = Serial.objects.order_by('title_cz')
     posts = Epizoda.objects.order_by('-created_date')[:12]
-    toppost = Topserials.objects.first()
+    toppost = Topserials.objects.all()[:5]
     return render(request, 'serials/post_list.html', {'menu_items' : serials,'posts' : posts, 'toppost' : toppost})
 
 def post_detail(request, name, sn, en):
@@ -51,7 +51,7 @@ def serials(request):
 
     serials = Serial.objects.all().order_by('title_cz')
     #episodes = get_object_or_404(Post, name=name)
-    toppost = Topserials.objects.first()
+    toppost = Topserials.objects.all()[:3]
     return render(request, 'serials/serials.html', {'menu_items' : serialss,'serials' : serials,'toppost' : toppost})
 
 def serial(request, name):
@@ -90,11 +90,15 @@ def get(request, uid):
 
 
 def gett(request):
-    return JsonResponse({'serial' : ''}, safe = False)
+	return JsonResponse({'serial' : ''}, safe = False)
+
+def handle404(request, exception):
+	trySerials = Serial.objects.all()[:5]
+	return render(request, 'mainapp/404.html', {'trySerials':trySerials})
 
 class EpizodaSitemap(Sitemap):
     changefreq = "never"
-    priority = 0.5
+    priority = 0.8
 
     def items(self):
         return Epizoda.objects.all()
@@ -103,7 +107,7 @@ class EpizodaSitemap(Sitemap):
         return obj.created_date
 
 class SerialSitemap(Sitemap):
-    changefreq = "weekly"
+    changefreq = "never"
     priority = 1
 
     def items(self):
